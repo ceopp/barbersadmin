@@ -1,0 +1,53 @@
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@sentry/browser": "^5.13.2",
+    "aphrodite": "^2.4.0",
+    "axios": "^0.21.0",
+    "bulma": "^0.9.1",
+    "chart.js": "^2.9.3",
+    "chartjs-plugin-datalabels": "^0.7.0",
+    "classnames": "^2.2.6",
+    "formik": "^2.2.5",
+    "humps": "^2.0.1",
+    "lodash": "^4.17.20",
+    "moment": "^2.29.1",
+    "query-string": "^6.13.7",
+    "react": "^16.12.0",
+    "react-beautiful-dnd": "12.2.0",
+    "react-dom": "^16.12.0",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "^3.2.0",
+    "react-select": "^3.0.8"
+  },
+  "homepage" : "/admin/",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "build-deploy": "INLINE_RUNTIME_CHUNK=false react-scripts build && rm -rf ~/barbersnode/admin/* && cp -a build/. ~/barbersnode/admin/",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "lint": "eslint src"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-plugin-react-hooks": "^1.6.0"
+  }
+}
