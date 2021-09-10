@@ -20,7 +20,7 @@ export default function Auth() {
     const auth = usePostRequest({ url: AUTH, headers: {} })
 
     if (isAuthenticated()) {
-        return <Redirect to="/home" />
+        return <Redirect to="/barbers" />
     }
 
     async function onSubmit(data) {
