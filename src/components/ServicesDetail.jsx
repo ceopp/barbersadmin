@@ -6,7 +6,7 @@ import Table from './common/Table'
 // import Table from './common/Table'
 // import notFound from '../static/image-not-found.png'
 
-export default function BarbersDetail({ item, onCancel, onSuccess, onUpdate }) {
+export default function ServicesDetail({ item, onCancel, onSuccess, onUpdate }) {
     // const attributeSync = usePostRequest({ url: ATTRIBUTE_LIST.replace('{shopId}', shop.id) })
     // const [attributes, setAttributes] = useState(item.attributes)
     // const productRemoveImage = usePutRequest({
@@ -53,15 +53,7 @@ export default function BarbersDetail({ item, onCancel, onSuccess, onUpdate }) {
         <div>
             <div className="columns">
                 <div className="column is-narrow">
-                    {item.user.photo ? (
-                        // eslint-disable-next-line react/jsx-no-target-blank
-                        <a href={item.user.photo} target="_blank" className="has-text-black">
-                            Фото
-                            <img className="image is-128x128" src={item.user.photo} alt="alt" />
-                        </a>
-                    ) : (
-                        <img className="image is-128x128" alt="alt" />
-                    )}
+                    {item.title}
                 </div>
 
                 <div className="column">

@@ -2,21 +2,20 @@ import React, { useEffect } from 'react'
 import { css, StyleSheet } from 'aphrodite'
 import cn from 'classnames'
 import Layout from '../components/Layout'
-import { BARBERS_LIST } from '../urls'
-import { usePostRequest } from '../hooks/request'
+import { SERVICES_LIST } from '../urls'
+import { useGetRequest } from '../hooks/request'
 import Button from '../components/common/Button'
 import Table from '../components/common/Table'
-import BarbersItem from '../components/BarbersItem'
+import ServicesItem from '../components/ServicesItem'
 
 
 export default function Barbers() {
-    const barbers = usePostRequest({ url: BARBERS_LIST })
+    const services = useGetRequest({ url: SERVICES_LIST })
 
     useEffect(() => {
-        barbers.request()
+        services.request()
         // eslint-disable-next-line
     }, [])
-    console.log(barbers)
 
     return (
         <Layout>
@@ -24,7 +23,7 @@ export default function Barbers() {
 
                 <div className="column">
                     <h1 className={cn(css(styles.titleName))}>
-                        Барберы
+                        Услуги
                     </h1>
                 </div>
 
@@ -39,22 +38,20 @@ export default function Barbers() {
 
             <div className="box">
                 <Table
-                    emptyMessage="Нет барберов"
-                    loading={barbers.loading}
-                    items={barbers.response ? barbers.response : []}
+                    emptyMessage="Нет услуг"
+                    loading={services.loading}
+                    items={services.response ? services.response : []}
                     columns={{
-                        name: 'Имя пользователя',
-                        phone: 'Телефон',
-                        about: 'Описание',
+                        title: 'Название услуги',
                         createdAt: 'Дата создание',
                         updatedAt: 'Последное изменение',
                         active: '',
                     }}
                     renderItem={(item) => (
-                        <BarbersItem
+                        <ServicesItem
                             key={item.id}
-                            onUpdate={barbers.request}
-                            onDelete={barbers.request}
+                            onUpdate={services.request}
+                            onDelete={services.request}
                             item={item} />
                     )} />
             </div>

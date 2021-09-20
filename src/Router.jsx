@@ -6,6 +6,7 @@ import Login from './pages/Login'
 import BaseContextWrapper from './components/common/BaseContext'
 import Auth from './pages/Auth'
 import Barbers from './pages/Barbers'
+import Services from './pages/Services'
 
 export default function App() {
     return (
@@ -15,8 +16,7 @@ export default function App() {
                     <Route path="/" name="auth" component={Auth} exact />
                     <Route path="/login" name="login" component={Login} exact />
                     <Route path="/barbers" name="barbers" component={Barbers} exact />
-                    <Route path="/user" name="user" component={Barbers} exact />
-                    <Route path="/services" name="services" component={Barbers} exact />
+                    <Route path="/services" name="services" component={Services} exact />
                     <Route path="" component={NotFound} exact />
                 </Switch>
             </BaseContextWrapper>
