@@ -22,7 +22,6 @@
     "react-scripts": "^3.2.0",
     "react-select": "^3.0.8"
   },
-  "homepage": "/admin/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

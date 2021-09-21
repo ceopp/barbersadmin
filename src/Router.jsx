@@ -10,7 +10,7 @@ import Services from './pages/Services'
 
 export default function App() {
     return (
-        <BrowserRouter basename="/admin">
+        <BrowserRouter >
             <BaseContextWrapper>
                 <Switch>
                     <Route path="/" name="auth" component={Auth} exact />
