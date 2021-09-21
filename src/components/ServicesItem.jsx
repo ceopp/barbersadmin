@@ -7,23 +7,6 @@ import ServicesDetail from './ServicesDetail'
 
 
 export default function ServiceItem({ item, onDelete, onUpdate }) {
-    // const [updateBarbersModal, hideBarbersUpdateModal] = useModal(
-    //     <BarbersUpdate item={item} onSuccess={() => {
-    //         hideBarbersUpdateModal()
-    //         onUpdate()
-    //     }} onCancel={() => hideBarbersUpdateModal()} />,
-    // )
-
-    // const [showBarbersImage, hideShowBarbersImage] = useModal(
-    //     <BarbersImage
-    //         shop={shop}
-    //         product={item}
-    //         onSuccess={() => {
-    //             hideShowProductImage()
-    //             onUpdate()
-    //         }}
-    //         onCancel={() => hideShowProductImage()} />,
-    // )
 
     const [showBarbersModal, hideBarbersModal] = useModal(
         <ServicesDetail
@@ -31,19 +14,6 @@ export default function ServiceItem({ item, onDelete, onUpdate }) {
             item={item}
             onCancel={() => hideBarbersModal()} />,
     )
-
-    // async function deleteProduct() {
-    //     if (global.confirm(t('productDelete'))) {
-    //         const { error } = await productDelete.request()
-    //
-    //         if (error) {
-    //             showMessage(error.data.detail, 'is-danger')
-    //             return
-    //         }
-    //
-    //         onDelete()
-    //     }
-    // }
 
 
     return (

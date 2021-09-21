@@ -2,52 +2,10 @@ import React from 'react'
 import Button from './common/Button'
 import { readableDate } from '../utils/date'
 import Table from './common/Table'
-// import { currency } from '../utils/currency'
-// import Table from './common/Table'
-// import notFound from '../static/image-not-found.png'
+
 
 export default function ServicesDetail({ item, onCancel, onSuccess, onUpdate }) {
-    // const attributeSync = usePostRequest({ url: ATTRIBUTE_LIST.replace('{shopId}', shop.id) })
-    // const [attributes, setAttributes] = useState(item.attributes)
-    // const productRemoveImage = usePutRequest({
-    //     url: PRODUCT_DELETE.replace('{shopId}', shop.id).replace('{id}', product.id),
-    // })
-    // const t = useTrans()
-    //
-    // const cur = currencies.map((i) => ({ name: t(i.name), value: i.value }))
-    //
-    // async function changeInstock(inStock, attributeId) {
-    //     const attr = attributes.map((i) => {
-    //         if (attributeId === i.id) {
-    //             return { ...i, inStock }
-    //         }
-    //
-    //         return i
-    //     })
-    //     setAttributes(attr)
-    // }
-    //
-    // async function inStockChange() {
-    //     const { success } = await attributeSync.request({ data: {
-    //         attributes,
-    //         product: product.id,
-    //     } })
-    //     if (success) {
-    //         onSuccess()
-    //     }
-    // }
-    //
-    // const [updateProductModal, hideProductUpdateModal] = useModal(
-    //     <ProductUpdate product={product} shopId={shop.id} onSuccess={() => {
-    //         hideProductUpdateModal()
-    //         onUpdate()
-    //     }} onCancel={() => hideProductUpdateModal()} />,
-    // )
-    //
-    // async function removeImage() {
-    //     await productRemoveImage.request()
-    //     onSuccess()
-    // }
+
 
     return (
         <div>
@@ -163,7 +121,6 @@ export default function ServicesDetail({ item, onCancel, onSuccess, onUpdate }) 
             <Button
                 text="Изменить"
                 icon="pencil-outline"
-                //onClick={updateProductModal}
                 className="is-link is-pulled-right ml-1" /> &nbsp;
 
             <Button
