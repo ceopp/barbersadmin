@@ -1,10 +1,20 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Button from './common/Button'
 import { readableDate } from '../utils/date'
 import Table from './common/Table'
+import {useGetRequest} from "../hooks/request";
+import {BARBER_ACTIVATE} from "../urls";
 
+export default function BarbersDetail({ item, onCancel, onUpdate }) {
+    const barberActive = useGetRequest({ url: BARBER_ACTIVATE.replace('{id}', item.id) })
+    const [isActive, setActive] = useState(item.isActive);
 
-export default function BarbersDetail({ item, onCancel, onSuccess, onUpdate }) {
+    const activateBarber = () => {
+        barberActive.request();
+        setActive(true)
+        onUpdate();
+    }
+
     return (
         <div>
             <div className="columns">
@@ -82,7 +92,7 @@ export default function BarbersDetail({ item, onCancel, onSuccess, onUpdate }) {
 
                             <tr>
                                 <td>Активно:</td>
-                                <td>{item.isActive ? 'Да' : 'Нет'}</td>
+                                <td>{isActive ? 'Да' : 'Нет'}</td>
                             </tr>
 
                             <tr>
@@ -124,11 +134,15 @@ export default function BarbersDetail({ item, onCancel, onSuccess, onUpdate }) {
                     </tr>
                 )} /><br />
 
-            <Button
-                text="Изменить"
-                icon="pencil-outline"
-                //onClick={updateProductModal}
-                className="is-link is-pulled-right ml-1" /> &nbsp;
+            {!isActive
+                ? <Button
+                    text="Активировать"
+                    icon="pencil-outline"
+                    onClick={() => activateBarber()}
+                    className="is-link is-pulled-right ml-1"
+                />
+                : null
+            }
 
             <Button
                 text="Закрыть"

@@ -7,14 +7,12 @@ import BarbersDetail from './BarbersDetail'
 
 
 export default function BarbersItem({ item, onDelete, onUpdate }) {
-
     const [showBarbersModal, hideBarbersModal] = useModal(
         <BarbersDetail
             onUpdate={onUpdate}
             item={item}
             onCancel={() => hideBarbersModal()} />,
     )
-
 
     return (
         <tr>

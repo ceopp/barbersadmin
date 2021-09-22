@@ -10,7 +10,7 @@ const baseAxios = axios.create({
         humps.camelizeKeys,
     ],
     transformRequest: [
-        decamelize,
+        // decamelize,
         ...axios.defaults.transformRequest,
     ],
 })

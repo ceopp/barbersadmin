@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, {useEffect} from 'react'
 import { css, StyleSheet } from 'aphrodite'
 import cn from 'classnames'
 import Layout from '../components/Layout'
@@ -13,10 +13,14 @@ export default function Barbers() {
     const barbers = usePostRequest({ url: BARBERS_LIST })
 
     useEffect(() => {
-        barbers.request()
+        getBarbers()
         // eslint-disable-next-line
     }, [])
     console.log(barbers)
+
+    const getBarbers = () => {
+        barbers.request()
+    }
 
     return (
         <Layout>
@@ -53,7 +57,7 @@ export default function Barbers() {
                     renderItem={(item) => (
                         <BarbersItem
                             key={item.id}
-                            onUpdate={barbers.request}
+                            onUpdate={getBarbers}
                             onDelete={barbers.request}
                             item={item} />
                     )} />
