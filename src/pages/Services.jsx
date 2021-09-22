@@ -2,20 +2,34 @@ import React, { useEffect } from 'react'
 import { css, StyleSheet } from 'aphrodite'
 import cn from 'classnames'
 import Layout from '../components/Layout'
-import { SERVICES_LIST } from '../urls'
-import { useGetRequest } from '../hooks/request'
+import {SERVICES_CREATE, SERVICES_LIST} from '../urls'
+import {useGetRequest, usePostRequest} from '../hooks/request'
 import Button from '../components/common/Button'
 import Table from '../components/common/Table'
 import ServicesItem from '../components/ServicesItem'
-
+import {useModal} from "../hooks/modal";
+import CreateService from "../components/CreateService";
 
 export default function Barbers() {
     const services = useGetRequest({ url: SERVICES_LIST })
+    const serviceCreate = usePostRequest({ url: SERVICES_CREATE })
 
     useEffect(() => {
-        services.request()
+        loadServices()
         // eslint-disable-next-line
     }, [])
+
+    const loadServices = () => {
+        services.request()
+    }
+
+    const [showBarbersModal, hideBarbersModal] = useModal(
+        <CreateService
+            onClick={(value) => serviceCreate.request(value).then(() => {loadServices()})}
+            onCancel={() => hideBarbersModal()}
+            loadServices={loadServices}
+        />,
+    )
 
     return (
         <Layout>
@@ -31,7 +45,7 @@ export default function Barbers() {
                     <Button
                         text="Создать"
                         icon="add-outline"
-                        // onClick={createCategoryModal}
+                        onClick={showBarbersModal}
                         className="is-link is-outlined is-pulled-right" />
                 </div>
             </div>
