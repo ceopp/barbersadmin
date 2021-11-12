@@ -23,7 +23,7 @@ baseAxios.interceptors.request.use((config) => ({
 export default baseAxios
 
 // eslint-disable-next-line consistent-return
-function decamelize(object) {
+/*function decamelize(object) {
     if (!(object && !(object instanceof File))) return object
 
     if (object instanceof FormData) {
@@ -41,4 +41,4 @@ function decamelize(object) {
             [humps.decamelize(next)]: object[next],
         }), {})
     }
-}
+}*/

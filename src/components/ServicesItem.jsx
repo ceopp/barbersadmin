@@ -1,39 +1,60 @@
 /* eslint-disable no-nested-ternary */
 import React from 'react'
-import { readableDate } from '../utils/date'
+import {readableDate} from '../utils/date'
 import Button from './common/Button'
-import { useModal } from '../hooks/modal'
-import ServicesDetail from './ServicesDetail'
+import ServiceDetail from "./ServiceDetail";
+import {useModal} from "../hooks/modal";
+import EditService from "./EditService";
+import {useDeleteRequest, usePostRequest} from "../hooks/request";
+import {SERVICE_DELETE, SERVICE_EDIT} from "../urls";
 
 
-export default function ServiceItem({ item, onDelete, onUpdate }) {
+export default function ServiceItem({item, onUpdateServices}) {
+  const serviceEdit = usePostRequest({url: SERVICE_EDIT.replace('{id}', item.id)});
+  const serviceDelete = useDeleteRequest({url: SERVICE_DELETE.replace('{id}', item.id)});
 
-    const [showBarbersModal, hideBarbersModal] = useModal(
-        <ServicesDetail
-            onUpdate={onUpdate}
-            item={item}
-            onCancel={() => hideBarbersModal()} />,
-    )
+  const [showEditServiceModal, hideEditServiceModal] = useModal(
+    <EditService
+      onClick={(value) => serviceEdit.request(value).then(() => onUpdateServices())}
+      service={item}
+      onCancel={() => hideEditServiceModal()}
+    />,
+  )
 
+  const [showServiceModal, hideServiceModal] = useModal(
+    <ServiceDetail
+      onUpdate={showEditServiceModal}
+      item={item}
+      onCancel={() => hideServiceModal()}/>,
+  )
 
-    return (
-        <tr>
-            <td className="pointer">
-                {item.title}
-            </td>
+  const handleDeleteService = () => {
+    serviceDelete.request()
+      .then(({error}) => {
+        if (!error) {
+          onUpdateServices()
+        }
+      })
+  }
 
-            <td className="pointer">
-                {readableDate(item.createdAt)}
-            </td>
+  return (
+    <tr>
+      <td className="pointer" onClick={showServiceModal}>
+        {item.title}
+      </td>
 
-            <td className="pointer">
-                {readableDate(item.updatedAt)}
-            </td>
+      <td className="pointer" onClick={showServiceModal}>
+        {readableDate(item.createdAt)}
+      </td>
 
-            <td className="has-text-right">
-                <Button className="pointer is-white" icon="trash-outline" />
-                <Button className="pointer is-white" icon="create-outline" />
-            </td>
-        </tr>
-    )
+      <td className="pointer" onClick={showServiceModal}>
+        {readableDate(item.updatedAt)}
+      </td>
+
+      <td className="has-text-right">
+        <Button className="pointer is-white" icon="trash-outline" onClick={handleDeleteService}/>
+        <Button className="pointer is-white" icon="create-outline" onClick={showEditServiceModal}/>
+      </td>
+    </tr>
+  )
 }
